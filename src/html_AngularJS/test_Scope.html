@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试作用域(Scope)</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myCtrl">
+    <h3>{{carname}}</h3>
+</div>
+<div id="myapp1" ng-app="myapp1" ng-controller="myCtrl1">
+    <input ng-model="name">
+    <h2>{{greeting}}</h2>
+    <button ng-click="sayHello()">点我</button>
+</div>
+<div id="myapp2" ng-app="myapp2" ng-controller="myCtrl2">
+    <ul>
+        <li ng-repeat="x in names">{{x}}</li><!-- 每个<li>元素可以访问当前的重复对象，这里对应的是一个字符串，并使用变量x表示 -->
+    </ul>
+</div>
+<div id="myapp3" ng-app="myapp3" ng-controller="myCtrl3">
+    <h1>{{lastname}}家庭成员:</h1>
+    <ul>
+        <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+    </ul>
+</div>
+<script>
+    var app = angular.module("myapp",[]);
+    var app1 = angular.module("myapp1",[]);
+    var app2 = angular.module('myapp2',[]);
+    var app3 = angular.module('myapp3',[]);
+    app.controller('myCtrl',function($scope){
+        $scope.carname = "vivo";
+    })
+
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById('myapp1'),['myapp1']);
+        angular.bootstrap(document.getElementById('myapp2'),['myapp2']);
+        angular.bootstrap(document.getElementById('myapp3'),['myapp3']);
+    })
+    app1.controller('myCtrl1',function($scope){
+        $scope.name = "Runoob";
+        $scope.sayHello = function(){
+            $scope.greeting = 'Hello' + $scope.name +'!';
+        }
+    app2.controller('myCtrl2',function($scope){
+        $scope.names = ["Email","Tobias","Linus"];
+    })
+    })
+    app3.controller('myCtrl3',function($scope,$rootScope){
+        $scope.names = ["Email--","Tobias--","Linus--"];
+        $rootScope.lastname = "Refsnes";
+    })
+</script>
+</body>
+</html>

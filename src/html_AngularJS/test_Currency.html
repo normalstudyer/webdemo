@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试过滤器</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<!-- currency过滤器 -->
+<div ng-app="myapp" ng-controller="myCtrl">
+    数量:<input type="number" ng-model="quantity">
+    价格:<input type="number" ng-model="price">
+
+    <p>总价 = {{ (quantity * price) | currency:"￥"}}</p><!-- currency过滤器将数字格式化为货币格式，默认为美元符号($),可以变为中文符号(￥) -->
+</div>
+<!-- 向指令添加过滤器 过滤器可以通过一个管道字符(|)和一个过滤器添加到指令中。
+     orderBy 过滤器根据表达式排列数组 -->
+<div id="myapp1" ng-app="myapp1" ng-controller="myCtrl1">
+    <ul>
+        <li ng-repeat = "x in names | orderBy:'id'"><!-- 文档中是根据country的大小进行排序，我改为根据id排序 -->
+            {{ x.name + ',' + x.country}}
+        </li>
+    </ul>
+</div>
+<div id="myapp2" ng-app="myapp2" ng-controller="myCtrl2">
+    <p>输入过滤</p>
+    <p><input type="text" ng-model="test"></p>
+    <ul>
+        <li ng-repeat="x in names | filter:test | orderBy:'id'"><!-- 这部分文档有问题，应该按照id排序，而不是按照country -->
+            {{ (x.name | uppercase) + ',' + x.country}}
+        </li>
+    </ul>
+</div>
+<div id="myapp3" ng-app="myapp3" ng-controller="myCtrl3">
+    {{formatDate}}
+</div>
+<script>
+    var app = angular.module("myapp",[]);
+    var app1 = angular.module("myapp1",[]);
+    var app2 = angular.module("myapp2",[]);
+    var app3 = angular.module("myapp3",[]);
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById("myapp1"),["myapp1"]);
+        angular.bootstrap(document.getElementById("myapp2"),["myapp2"]);
+        angular.bootstrap(document.getElementById("myapp3"),["myapp3"]);
+    })
+    app.controller("myCtrl",function($scope){
+        $scope.quantity = 1;
+        $scope.price = 9.99;
+    });
+    app1.controller("myCtrl1",function($scope){
+        //$scope.names = ["Kai,Denmark","Jani,Norway","Hege,Sweden"];
+        $scope.names = [
+            {"id":"2","name":"Kai","country":"Dermark"},
+            {"id":"1","name":"Jani","country":"Norway"},
+            {"id":"3","name":"Hege","country":"Sweden"}
+        ]
+        //$scope.country = ["Denmark","Norway","Sweden"];
+    })
+    app2.controller("myCtrl2",function($scope){
+        //下面的数组格式是对的
+        $scope.names = [
+            {"id":"1","name":"Kai","country":"Dermark"},
+            {"id":"2","name":"Jani","country":"Norway"},
+            {"id":"3","name":"Hege","country":"Sweden"}
+        ]
+    })
+    app3.controller("myCtrl3",function($scope,$filter){
+        var today = new Date();
+        $scope.formatDate = $filter('date')(today,'yyyy-MM-dd hh-mm-ss');
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+    <script>
+        /*Vue.component('todo-item',{
+            template:'\
+        <li>\
+        {{ title }}\
+        <button v-on:click="$emit(\'remove\')">Remove</button>\
+        </li>\
+        ',
+            props:['title']
+        })
+        new Vue({
+            el:'#todo-list-example',
+            data:{
+                newTodoText:'',
+                todos:[
+                    {
+                        id:1,
+                        title:'Do the dishes',
+                    },
+                    {
+                        id:2,
+                        title:'Take out the trash',
+                    },
+                    {
+                        id:3,
+                        title:'Mow the lawn'
+                    }
+                ],
+                nextTodoId:4
+            },
+            methods:{
+                addNewTodo:function () {
+                    this.todos.push({
+                        id:this.nextTodoId++,
+                        title:this.newTodoText
+                    })
+                    this.newTodoText=''
+                }
+            }
+        })*/
+
+        Vue.component('todo-item', {
+            template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">Remove</button>\
+    </li>\
+  ',
+            props: ['title']
+        })
+
+        new Vue({
+            el: '#todo-list-example',
+            data: {
+                newTodoText: '',
+                todos: [
+                    {
+                        id: 1,
+                        title: 'Do the dishes',
+                    },
+                    {
+                        id: 2,
+                        title: 'Take out the trash',
+                    },
+                    {
+                        id: 3,
+                        title: 'Mow the lawn'
+                    }
+                ],
+                nextTodoId: 4
+            },
+            methods: {
+                addNewTodo: function () {
+                    this.todos.push({
+                        id: this.nextTodoId++,
+                        title: this.newTodoText
+                    })
+                    this.newTodoText = ''
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+<!--<div id="todo-list-example">
+    <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input
+        v-model="newTodoText"
+        id="new-todo"
+        placeholder="E.g. Feed the cat">
+        <button>Add</button>
+    </form>
+    <ul>
+        <li
+            is="todo-item"
+            v-for="{todo,index} in todos"
+            v-bind:key="todo.id"
+            v-bind:title="todo.title"
+            v-on:remove="todos.splice(index,1)"
+            ></li>
+    </ul>
+</div>-->
+
+<div id="todo-list-example">
+    <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input
+                v-model="newTodoText"
+                id="new-todo"
+                placeholder="E.g. Feed the cat"
+        >
+        <button>Add</button>
+    </form>
+    <ul>
+        <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:key="todo.id"
+                v-bind:title="todo.title"
+                v-on:remove="todos.splice(index, 1)"
+        ></li>
+    </ul>
+</div>
+<div >
+    <form onsubmit="return check()">
+        <label>姓名:</label><input type="text" id="name"><span id="sp"></span>
+        <label>密码:</label><input type="password" id="password">
+        <input type="submit" value="提交">
+    </form>
+
+</div>
+<script>
+$(function(){
+    $("#name").blur(function () {
+        if($(this).val() == "" || $(this).val() == null){
+            $("#sp").html("姓名不能为空");
+        }
+        //alert("111");
+    })
+})
+
+function check() {
+    if($('#name').val() == '11'){
+        alert("true");
+        return true;
+    }else{
+        alert("false");
+        return false;
+    }
+}
+</script>
+</body>
+</html>

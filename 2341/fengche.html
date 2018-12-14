@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="libs/fengche.js"></script>
+<script type="text/ecmascript">
+function bt3(){
+var p1= document.getElementById("p1");
+alert("nodetype:  "+p1.nodeType+"  "+"nodeName:  "+p1.nodeName+"  "+"nodeValue:  "+p1.nodeValue);
+var all = p1.attributes;
+alert("all[0].nodeName  "+all[0].nodeName+"  "+"all[o].nodeType"+all[0].nodeType+"all[0].nodeValue"+all[0].nodeValue)
+
+}
+</script>
+</head>
+
+<body>
+<img style="margin-left:100px; margin-top:100px"  id="tu1" src="2.jpg" /><br /><br />
+<input type="button" id="bt1" value="转动" onclick="start()"/>
+<input type="button" id="bt2" value="停止" onclick="stop()"/>
+<button onclick="bt3()">button</button>
+<p id="p1">我是段落一</p>
+</body>
+</html>

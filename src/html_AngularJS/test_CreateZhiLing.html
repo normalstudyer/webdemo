@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建自定义指令</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<!--你可以通过以下方式来调用指令
+    E:元素名 <runoob-directive></runoob-directive>
+    A:属性   <div runoob-directive></div>
+    C:类名   <div class="runoob-directive"></div>
+    M:注释   <!--directive:runoob-directive-->
+<runoob-directive></runoob-directive>
+<script>
+    var app=angular.module("myapp",[]);
+    app.directive("runoobDirective",function(){
+        return {
+            restrict : E,//限制使用，E只能通过元素名来访问
+            template : "<h3>自定义指令</h3>"
+        };
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(function(){
+	var window = this;
+	$.extend(window,{
+		aa:{
+			aa1:function(){
+				var kk=10;
+				return kk;
+			}
+		}
+	})
+})
+
+</script>
+<script>
+
+/*var bt = document.getElementById('bt');
+bt.onclick = function(e){
+	alert(1111);
+}*/
+$(function(){
+	$('#bt').click(function(){
+		aa.aa1();
+	})
+})
+</script>
+</head>
+
+<body>
+<h3>测试其他js里面方法可否在其他页面引用</h3>
+<button id='bt'>测试</button>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Props</title>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+</head>
+<body>
+<b>prop是父组件用来传递数据的一个自定义属性</b>
+<div id="app">
+    <child message="hello!"></child>
+</div>
+<br>
+<br>
+<b>动态Prop</b>
+<div id="app1">
+    <div>
+        <input v-model="parentMsg">
+        <br>
+        <child1 v-bind:message="parentMsg"></child1>
+    </div>
+</div>
+<br>
+<br>
+<b>以下实例中将v-bind指令将tudo传到每一个重复的组件中</b>
+<div id="app2">
+    <ol>
+        <todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+    </ol>
+</div>
+<br>
+<br>
+<b>自定义事件</b>
+<div id="app3">
+    <div id="counter-event-example">
+        <p>{{ total }}</p>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+    </div>
+</div>
+<script>
+    Vue.component('child',{
+        //声明props
+        props:['message'],
+        //同样也可以在vm实例中像"this.message"这样使用
+        template:'<span>{{message}}</span>'
+    })
+    //创建实例
+    new Vue({
+        el:'#app'
+    })
+    //注册
+    Vue.component('child1',{
+        //声明props
+        props:['message'],
+        //同样也可以在vm实例中像"this.message"这样使用
+        template:'<span>{{ message }}</span>'
+    })
+    //创建根实例
+    new Vue({
+        el:'#app1',
+        data:{
+            parentMsg:'父组件内容'
+        }
+    })
+    //注册
+    Vue.component('todo-item',{
+        props:['todo'],
+        template:'<li>{{ todo.text }}</li>'
+    })
+    new Vue({
+        el:'#app2',
+        data:{
+            sites:[
+                {text:'Runoob'},
+                {text:'Google'},
+                {text:'Taobao'}
+            ]
+        }
+    })
+
+    //自定义事件
+    Vue.component('button-counter',{
+        template:'<button v-on:click="incrementHandler">{{counter}}</button>',
+        data:function () {
+            return{
+                counter:0
+            }
+        },
+        methods:{
+            incrementHandler:function(){
+                this.counter +=1
+                this.$emit('increment')
+            }
+        },
+    })
+    new Vue({
+        el:'#counter-event-example',
+        data:{
+            total:0
+        },
+        methods:{
+            incrementTotal:function () {
+                this.total +=1
+            }
+        }
+    })
+</script>
+</body>
+</html>

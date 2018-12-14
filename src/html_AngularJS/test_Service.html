@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试服务</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myCtrl">
+    <p>当前页面的url:</p>
+    <h3>{{myUrl}}</h3>
+</div>
+<p>该实例使用了内建的$location服务获取当前页面的URL</p>
+<div id="myapp1" ng-app="myapp1" ng-controller="myCtrl1">
+    <p>欢迎信息</p>
+    <h3>{{myWelcome}}</h3>
+</div>
+<!-- $timeout 定时器 -->
+<div id="myapp2" ng-app="myapp2" ng-controller="myCtrl2">
+    <p>两秒后显示信息：</p>
+    <h3>{{myHeader}}</h3>
+</div>
+<p>$timeout 访问在规定的毫秒数后执行指定函数</p>
+<!-- $interval -->
+<div id="myapp3" ng-app="myapp3" ng-controller="myCtrl3">
+    <p>现在时间是：</p>
+    <h3>{{theTime}}</h3>
+</div>
+<!-- 创建自定义的服务 -->
+<div id="myapp4" ng-app="myapp4" ng-controller="myCtrl4">
+    <p>255的16进制是:</p>
+    <h3>{{hex}}</h3>
+</div>
+<div id="myapp5" ng-app="myapp5" ng-controller="myCtrl5">
+    在过滤器中使用服务:
+    <h3>{{ 255 | myFormat }}</h3>
+</div>
+<script>
+    var app = angular.module("myapp",[]);
+    var app1 = angular.module("myapp1",[]);
+    var app2 = angular.module("myapp2",[]);
+    var app3 = angular.module("myapp3",[]);
+    var app4 = angular.module("myapp4",[]);
+    var app5 = angular.module("myapp5",[]);
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById("myapp1"),["myapp1"]);
+        angular.bootstrap(document.getElementById("myapp2"),["myapp2"]);
+        angular.bootstrap(document.getElementById("myapp3"),["myapp3"]);
+        angular.bootstrap(document.getElementById("myapp4"),["myapp4"]);
+        angular.bootstrap(document.getElementById("myapp5"),["myapp5"]);
+    })
+    app.controller("myCtrl",function($scope,$location){
+        $scope.myUrl = $location.absUrl();
+    });
+    app1.controller("myCtrl1",function($scope,$http){
+        $http.get("welcome.htm").then(function(response){
+            $scope.myWelcome = response.data;
+        });
+    });
+    app2.controller("myCtrl2",function($scope,$timeout){
+        $scope.myHeader = "Hello World";
+        $timeout(function(){
+            $scope.myHeader = "How Are You";
+        },2000);
+    });
+    app3.controller("myCtrl3",function($scope,$interval){
+        $scope.theTime = new Date().toLocaleTimeString();
+        $interval(function(){
+            $scope.theTime = new Date().toLocaleTimeString()
+        },1000);
+    });
+    app4.service("hexafy",function(){
+        this.myFunc = function(x){
+            return x.toString(16);//此为转化为16进制
+        }
+    });
+    app4.controller("myCtrl4",function($scope,hexafy){
+        $scope.hex = hexafy.myFunc(255);
+    });
+    app5.service("db",function(){
+        this.myDb = function(x){
+            return x.toString(16);
+        }
+    });
+    app5.filter("myFormat",["db",function(db){
+        return function(x){
+            return db.myDb(x);
+        };
+    }]);
+</script>
+</body>
+</html>

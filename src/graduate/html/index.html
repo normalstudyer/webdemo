@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书途网-专业的二手书店</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        #div_head{
+            background-color: #f4f4f4;
+            height: 29px;
+            border-bottom: 1px solid #f9f9f9;
+            line-height: 29px;
+            width: 100%;
+            margin-top: -11px;
+            font-size: 3px;
+            float:left;
+        }
+        #div_head #ul_head{
+            float:right;
+            list-style: none;
+            margin-top: -26px;
+
+        }
+        #div_head #ul_head li{
+            float:left;
+        }
+        a{
+            text-decoration: none;
+        }
+        #div_head #ul_head #pipe{
+            padding: 0 5px;
+        }
+        #div_head .menu_list{
+            list-style: none;
+            display: block;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            padding-left: 10px;
+            margin-left:-10px;
+            z-index: 10;
+        }
+        #div_head .menu_list li{
+            float:none;
+        }
+        a:hover{
+            color:red;
+        }
+        .div_menu_list{
+            display: block;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            z-index: 11;
+            padding-right: 10px;
+            padding-left: 9px;
+        }
+        .menu_list li:hover{
+            background-color: #ddd;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('.div_menu_list').mouseenter(function(){
+                $('.div_menu_list').css("border","1px solid #ddd");
+                $('.menu_list').css("display","block");
+            })
+            $('.div_menu_list').mouseleave(function(){
+                $('.div_menu_list').css("border","none");
+                $('.menu_list').css("display","none");
+            })
+        })
+    </script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="div_head">
+    <div style="margin-left: 50px;color:#666;">您好，欢迎来到书途网！</div>
+    <div id="div_head_right">
+        <ul id="ul_head">
+            <li>
+                <a href="#" style="color:red;">请登录</a>
+                <a href="#">免费注册</a>
+            </li>
+            <li id="pipe">|</li>
+            <li>
+                <div class="div_menu_list">
+                <a href="#" class="div_head_right_a3">我的书途&nbsp;&nbsp;</a>
+                <ul class="menu_list">
+                    <li><a href="#" style="color:black">我的订单</a></li>
+                    <li><a href="#" style="color:black">我的余额</a></li>
+                </ul>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!--<div class="searchWarp">
+    <div class="searchBar">
+        <h1 class="logo"></h1>
+        <div class="searchBox">
+            <div class="searchFrame">
+                <form action="" onsubmit="search()" name="searchForm">
+                    <div class="search-combox">
+                    <input type="text" name="bookName" id="key" class="ac_input">
+                    </div>
+                    <div class="search-btn">
+                        <input type="submit" name="keyBtn" value="搜索">
+                    </div>
+                    <label>书名、作者、出版社</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+</body>
+</html>

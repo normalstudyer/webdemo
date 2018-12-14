@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试选择框</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myCtrl">
+    <!--<select ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names">
+    </select>--><!-- 该实例演示了ng-options的使用 -->
+    <select>
+        <option ng-repeat="x in names">{{x}}</option><!-- 该实例演示了用ng-repeat来创建下拉列表 -->
+    </select>
+</div>
+<!-- ng-repeat是一个字符串，通过数组来循环HTML代码来创建下拉列表 -->
+<div id="myapp1" ng-app="myapp1" ng-controller="myCtrl1">
+    <p>选择网站</p>
+    <select ng-model="selectedSite">
+        <option ng-repeat="x in sites"  value="{{x.url}}">{{x.site}}</option>
+    </select>
+    <h3>你选择的是:{{selectedSite}}</h3>
+    <p>该实例演示了使用ng-repeat指令来创建下拉列表，选中的是一个字符串</p>
+</div>
+<!-- ng-option选择的是一个对象 里面的内容是要呈现在选择框里面的 -->
+<div id="myapp2" ng-app="myapp2" ng-controller="myCtrl2">
+    <p>选择网站</p>
+    <select ng-model="selectedSite" ng-options="x.site for x in sites">
+    </select>
+    <h2>你选择的是:{{selectedSite.site}}</h2>
+    <p>网址为:{{selectedSite.url}}</p>
+</div>
+
+<script>
+    var app = angular.module("myapp",[]);
+    var app1 = angular.module("myapp1",[]);
+    var app2 = angular.module("myapp2",[]);
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById("myapp1"),["myapp1"]);
+        angular.bootstrap(document.getElementById("myapp2"),["myapp2"]);
+    })
+    app.controller("myCtrl",function($scope){
+        $scope.names = ["Google","Runoob","Taobao"];
+    });
+    app1.controller("myCtrl1",function($scope){
+        $scope.sites = [
+            {site : "Google", url : "http://www.google.com"},
+            {site : "Runoob", url : "http://www.runoob.com"},
+            {site : "Taobao", url : "http://www.taobao.com"}
+        ];
+    });
+    app2.controller("myCtrl2",function($scope){
+        $scope.sites = [
+            {site : "Google", url : "http://www.google.com"},
+            {site : "Runoob", url : "http://www.runoob.com"},
+            {site : "Taobao", url : "http://www.taobao.com"}
+        ];
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>一个简单的轮播图</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+/*.head-center1{
+  position:relative;
+  top:0px;
+  display:block;
+}
+.head-center{
+	display:none;
+}
+ul {
+	list-style:none;
+}
+*/</style>
+<script>
+$(function(){
+	var i = 0;
+	var a = window.setInterval(function(){
+		
+	    
+		    $('#img-bd li:eq('+i+')').siblings().hide();
+			$('#img-bd li:eq('+i+')').show();
+			$('#img-bd li:eq('+i+')').siblings().removeClass('on');
+			$('#img-bd li:eq('+i+')').addClass('on');
+		i++;
+		if(i==2){
+			i=0;
+		}
+},3000);
+})
+</script>
+</head>
+
+<body>
+<div style="border:1px solid blue;" id="db">
+          <ul style="position:relative;width:750px;height:343px;" id="img-bd">
+          <li style="position:absolute;width:750px;display:list-item;">
+          <a href="" target="_blank"><img src="head-center.png" class="head-center"></a>
+          </li>
+          <li style="position:absolute;width:750px;display:none;">
+          <a href="" target="_blank"><img src="head-center1.png" class="head-center1"></a>
+          </li>
+          </ul>
+<!--<img src='head-center.png' class="head-center" name='img'/>
+<img src='head-center1.png' class="head-center1" name='img'/>-->
+</div>
+</body>
+</html>

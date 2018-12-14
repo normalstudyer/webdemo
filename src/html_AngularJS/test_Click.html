@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anjular JS 事件</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <button ng-click="count=count+1">点我!</button>
+
+    <p>{{count}}</p>
+</div>
+<div id="myApp1" ng-app="myApp1" ng-controller="myCtrl1">
+    <!--<button ng-click="toggle()">隐藏/显示</button>-->
+    <button ng-click="toggle()">{{text}}</button>
+    <p ng-hide="myVar">
+        名:<input type="text" ng-model="firstName"><br>
+        姓:<input type="text" ng-model="lastName"><br><br>
+        姓名:{{firstName+""+lastName}}
+    </p>
+</div>
+<script>
+    var app = angular.module('myApp',[]);
+    var app1 = angular.module('myApp1',[]);
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById("myApp1"),['myApp1']);
+    });
+    app.controller('myCtrl',function($scope){
+        $scope.count = 0;
+    });
+    /*app1.controller('myCtrl1',function($scope){
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $scope.myVar = false;
+        $scope.toggle = function(){
+            $scope.myVar = !$scope.myVar;
+        }
+    });*/
+    app1.controller('myCtrl1',function($scope){
+        $scope.myVar = true;
+        $scope.text = '点击可见';
+        $scope.toggle = function(){
+            $scope.myVar = !$scope.myVar;
+            $scope.text = $scope.myVar?'点击可见':'点击消失';
+        }
+    })
+</script>
+</body>
+</html>

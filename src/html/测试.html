@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+<script type="text/javascript">
+function add(){
+	//alert(1)
+	document.getElementById('div1').style.display="none";
+}
+$(document).ready(function(){
+    var bo=document.getElementsByName('bo');
+    //alert(bo.length);
+    $('input:eq(0)').click(function(){
+        //alert('你已选中第一行');
+        if(bo[0].checked){
+            bo[1].checked = true;
+            bo[2].checked = true;
+            var a = $('input:checked');
+            console.log(a[0].checked);
+            console.log($('#bt1').attr('name'));
+        }else{
+            bo[1].checked = false;
+            bo[2].checked = false;
+        }
+    })
+    if(bo[0].checked){
+        alert('你已选中第一行');
+
+    }
+    //alert(123);
+    //alert(bo.length);
+})
+
+
+</script>
+</head>
+
+<body>
+<button onclick="add()">点击</button>
+<div id="div1">你好</div>
+<div id="div3">
+<button id="bt1" name="bt">点击测试</button>
+<table>
+<tr><td><input type="checkbox"  id="bo1" name='bo'/></td><td>全选</td></tr>
+<tr><td><input type="checkbox"  id="bo2" name='bo'/></td><td>湖泊</td></tr>
+<tr><td><input type="checkbox"  id="bo3" name='bo'/></td><td>河流</td></tr>
+</table>
+</div>
+</body>
+</html>

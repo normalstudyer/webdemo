@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试全局API</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div id="myApp1" ng-app="myApp1" ng-controller="myCtrl1">
+    <input type="text" ng-model="myInput" ng-blur="blur()">
+    <p>输入的内容为:{{myInput}}</p>
+    <p>变成小写:{{x1}}</p>
+    <p>变成大写:{{x2}}</p>
+    <p ng-switch="x3">
+        是不是字符串:
+        <label ng-switch-when="true">是</label>
+        <label ng-switch-when="false">不是</label>
+        <label ng-switch-when=""></label>
+    </p>
+    <p ng-switch="x4">
+        是不是数字:
+        <label ng-switch-when="true">是</label>
+        <label ng-switch-when="false">不是</label>
+        <label ng-switch-when=""></label>
+    </p>
+</div>
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <p>{{x5}}</p>
+    <p>{{x6}}</p>
+</div>-->
+<script>
+    //var app = angular.module('myApp',[]);
+    var app1 = angular.module('myApp1',[]);
+    /*angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById('myApp1'),['myApp1']);
+    });*/
+    /*app.controller('myCtrl',function ($scope) {
+        $scope.x5 = 'JOHN';
+        $scope.x6 = angular.lowercase($scope.x1);
+    });*/
+    app1.controller('myCtrl1',function($scope){
+        $scope.blur = function(){
+            if($scope.myInput ==''){
+                $scope.myInput = undefined;
+            }
+            if(!isNaN($scope.myInput)){
+                $scope.myInput = Number($scope.myInput);
+            }
+            $scope.x1 = angular.lowercase($scope.myInput);
+            $scope.x2 = angular.uppercase($scope.myInput);
+            $scope.x3 = angular.isString($scope.myInput);
+            $scope.x4 = !isNaN($scope.myInput);
+        }
+    })
+</script>
+</body>
+</html>

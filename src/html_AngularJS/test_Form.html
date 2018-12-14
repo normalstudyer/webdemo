@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<!-- $dirty表示有填写记录 $pristine表示没有填写记录 -->
+<form ng-app="myApp" ng-controller="myCtrl" name="myForm" novalidate>
+    <p>用户名:<br>
+    <input type="text" name="user" ng-model="user" required>
+        <span style="color:red" ng-show="myForm.user.$pristine && myForm.user.$invalid">
+            <span ng-show="myForm.user.$error.required">用户名是必须的</span>
+        </span>
+    </p>
+    <p>邮箱:<br>
+    <input type="email" name="email" ng-model="email" required>
+        <sapn ng-show="myForm.email.$error.required">邮箱是必须的</sapn>
+        <sapn ng-show="myForm.email.$error.email">非法的邮箱</sapn>
+    </p>
+    <p>
+        <input type="submit" ng-disabled="myForm.user.$pristine && myForm.user.$invalid ||
+         myForm.email.$pristine && myForm.email.$invalid">
+    </p>
+</form>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function ($scope) {
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        /*设置小圆样式*/
+        .magnifier{
+            width:20px;
+            height:20px;
+            border-radius:100%;
+            border:2px solid currentColor;
+            margin:30px auto;
+            position:relative;
+        }
+        /*设置斜杠样式*/
+        .magnifier::after{
+            content:"";
+            width:13px;
+            height:2px;
+            background-color:currentColor;
+            position:absolute;
+            top:80%;
+            left:100%;
+            -webkit-transform: rotate(30deg);/*谷歌浏览器*/
+            -moz-transform: rotate(30deg);/*火狐浏览器*/
+            -ms-transform: rotate(30deg);/*IE浏览器*/
+            -o-transform: rotate(30deg);/*欧朋浏览器*/
+            transform:rotate(30deg);
+        }
+        /*设置‘-’符号*/
+        .magnifier i{
+            width:10px;
+            heifht:2px;
+            background-color: currentColor;
+            display:inline-block;
+            position:absolute;
+            top:47%;
+            margin-left: 5px;
+        }
+        /*设置‘|’符号*/
+        .magnifier i::after{
+            content:"";
+            width:10px;
+            height:2px;
+            display:inline-block;
+            background-color:currentColor;
+            position:absolute;
+            top:0px;
+            -webkit-transform: rotate(90deg);/*谷歌浏览器*/
+            -moz-transform: rotate(90deg);/*火狐浏览器*/
+            -ms-transform: rotate(90deg);/*IE浏览器*/
+            -o-transform: rotate(90deg);/*欧朋浏览器*/
+            transform:rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+<div class="magnifier"><i></i></div>
+</body>
+</html>

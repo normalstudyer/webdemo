@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的AngularJS</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<!-- 一个html中可以存在多个ng-app,但需要手动加载 -->
+<div ng-app="myApp1" id="myApp1">
+    <p>名字:<input type="text" ng-model="name"></p>
+    <h2>Hello {{name}}</h2>
+</div>
+<div ng-app="myApp" ng-controller="myCtrl">
+    名:<input type="text" ng-model="firstName"><br>
+    姓:<input type="text" ng-model="lastName"><br>
+    <br>
+    姓名:{{firstName + " " + lastName}}
+
+</div>
+<!--<div ng-app="myApp2" ng-init="quanity:5;price:10">
+    <p>数量:<input type="text" ng-model="quanity"></p>
+    <p>价格:<input type="text" ng-model="price"></p>
+    <p>总价:{{quanity * price}}</p>
+</div>-->
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function($scope){
+        $scope.firstName = 'John';
+        $scope.lastName = 'Doe';
+    })
+    var app1 = angular.module("myApp1",[]);//手动加载
+    angular.bootstrap(document.getElementById('myApp1'),['myApp1']);
+    //var app2=angular.module("myApp2",[]);
+   /* angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById('myApp1'),['myApp1']);//手动加载
+    });//这个手动加载未成功，不知道原因 */
+
+</script>
+</body>
+</html>

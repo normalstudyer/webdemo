@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录</title>
+    <style>
+        #span1{
+            font-family: 微软雅黑;
+            font-size: medium;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        #center{
+
+        }
+        #div_all{
+            width:1366px;
+            height:600px;
+            background: url("img/login1.jpg");
+            background-size: 100% 100%;
+            margin-top:0px;
+            position: absolute;
+        }
+    </style>
+    <script src="./js/vendor/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        var i  =1;
+        //var progress1 = document.getElementById("progress_bar");
+        //document.getElementById("progress_bar").style.display = "none";为什么这个document无法运行，这是什么原因
+        var a = window.setInterval(function(){
+            console.log("成功");
+            $('#progress_bar').css("width",i*30);
+            i++;
+            if(i==10){
+                i=1;
+            }
+        },2000);
+    </script>
+</head>
+<body>
+
+<!--<div id="div_all" align="center">
+    <p id="span1">欢迎登录</p>
+    <div id="center" >
+
+        <form id="form">
+            <P>用户名:<input type="text" id="name" placeholder="请输入用户名"></P>
+            <p>密&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" id="password" placeholder="请输入密码"></p>
+            <input type="submit" value="提交"><input type="reset" value="重置">
+        </form>
+    </div>
+</div>-->
+<div id="progress" style="display:inline-block;width:300px;height:15px;border:1px solid ;background-color: #888888;border-radius: 5px;">
+    <div id="progress_bar" style="width:30px;height:15px;background-color: #cd0001;">
+
+    </div>
+</div><span id="span1">5</span>
+</body>
+</html>

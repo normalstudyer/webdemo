@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(function(){
+	
+	$('#div1').css("display","block");
+	$('#tbody1').append("<tr><td>语文</td><td>数学</td></tr>");
+	$('#div1').css("display","none");
+})
+</script>
+</head>
+
+<body>
+<div style="height:50px;width:150px;border:1px solid  #06F;display:none;" id="div1">
+请耐心等待。。。。
+</div>
+<div>
+<table border="1">
+<tbody id="tbody1"></tbody>
+</table>
+</div>
+</body>
+</html>

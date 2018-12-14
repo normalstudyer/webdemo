@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录</title>
+    <style>
+        #span1{
+            font-family: 微软雅黑;
+            font-size: medium;
+            font-weight: bold;
+            vertical-align: center;
+        }
+        #div_all{
+            margin-top: 50px;
+
+        }
+        #imgs{
+            transition:all linear 1s;/*transition产生过渡效果*/
+            /*transform: rotate(30deg);*/
+            width:400px;
+            height:200px;
+            position: relative;
+        }
+        #imgs:hover{
+            width: 600px;
+            height:400px;
+
+        }
+    </style>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="div_all" align="center">
+    <span id="span1">欢迎登录</span>
+    <div id="center">
+        <form id="form">
+            <P>用户名:<input type="text" id="name" placeholder="请输入用户名"></P>
+            <p>密&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" id="password" placeholder="请输入密码"></p>
+            <input type="submit" value="提交"><input type="reset" value="重置">
+        </form>
+    </div>
+</div>
+<img  id="imgs"  src="login1.jpg"><br>
+
+<input type="text" id="t"><br>
+<p id = "timeP"></p>
+<script>
+    $(function(){
+       //$('#imgs').hide(3000);
+        /*setTimeout(function(){
+            $('#imgs').css('display','none');
+        },3000);*/
+        var a = window.setInterval(function(){
+            $('#img').animate({left:'400px'})
+        },3000);
+        //$('#imgs').animate({left:'400px'},2000);
+    })
+    function show(){
+        var date = new Date();
+        $('#t').val(date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
+        setTimeout(show(),1000);
+    }
+    window.onload = function () {
+        show();
+    }
+    function getTime(){
+        str = "当前时间为："
+        var p = document.getElementById("timeP");
+        var time =  new Date();
+        year = time.getFullYear();
+        month = time.getMonth() + 1;
+        day = time.getDate();
+        hour = time.getHours();
+        minutes = time.getMinutes();
+        seconds = time.getSeconds();
+        str = str + year +"-"+ month +"-"+ day + " " +hour+":"+minutes+":"+seconds;
+        var str1 = time.toLocaleTimeString()
+        p.innerText = str1;
+
+        //setTimeout(getTime,1000);
+    }
+
+    var a = window.setInterval(function(){getTime()},1000);
+    /*window.onload = function(){
+        getTime();
+    }*/
+</script>
+</body>
+</html>

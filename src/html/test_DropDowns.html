@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test DropDowns</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--
+如需使用下拉菜单，只需要在 class .dropdown 内加上下拉菜单即可
+-->
+<div class="dropdown">
+    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+        主题<span class="caret"></span>
+    </button>
+    <!-- tabindex表示用'tab'键进行导航时的元素顺序 -->
+    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation" class="dropdown-header">下拉菜单标题</li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="3" href="#">Java</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="1" href="#">数据挖掘</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="2" href="#">数据通信/网络</a>
+        </li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation" class="dropdown-header">下拉菜单标题</li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="4" href="#">分离的链接</a>
+        </li>
+    </ul>
+</div>
+<!--分割按钮下拉菜单-->
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">默认
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">切换下拉菜单</span>
+        </button>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="#">功能</a>
+        </li>
+        <li>
+            <a href="#">另一个功能</a>
+        </li>
+        <li>
+            <a href="#">其他</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#">分离的链接</a>
+        </li>
+    </ul>
+</div>
+<!--dropup可以使菜单上拉-->
+<div class="btn-group dropup">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">原始
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="sr-only">分割下拉菜单</span>
+            <span class="caret"></span>
+        </button>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="#">功能</a>
+        </li>
+        <li>
+            <a href="#">另一个功能</a>
+        </li>
+        <li>
+            <a href="#">其他</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#">分离的链接</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

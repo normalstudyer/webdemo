@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试ng-model指令</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        input.ng-invalid{
+            backgound-color:lightblue;
+        }
+    </style>
+</head>
+<body>
+<form ng-app="myapp" name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+</form>
+<p>在输入框中输入邮箱地址，如果不是一个合法的地址，会弹出警告提示</p>
+<form id="myapp1" ng-app="myapp1" name="myForm1" ng-init="myText = 'test@runoob.com'">
+    Email:
+    <input type="email" name="myAddress1" ng-model="myText" required>
+    <p>编辑邮箱地址，查看地址状态</p>
+    <h3>状态</h3>
+    <p>Valid {{myForm1.myAddress1.$valid}} (如果输入的值是合法的则为true)</p>
+    <p>Dirty {{myForm1.myAddress1.$dirty}} (如果值改变则为true)</p>
+    <p>Touched {{myForm1.myAddress1.$touched}} (如果通过触屏点击则为true)</p>
+</form>
+<form id="myapp2" ng-app="myapp2" name="myForm">
+    输入你的名字:
+    <input name="myAddress2" ng-model="text" required id="input1">
+    <p>编辑文本域，不同状态背景颜色会发生变化</p>
+    <p>文本域添加required属性，这是必须的，如果为空是不合法的</p>
+</form>
+
+<script>
+    var app1 = angular.module('myapp1',[]);
+    //var app = angular.module('myapp',[]);
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById('myapp1'),['myapp1']);
+        angular.bootstrap(document.getElementById('myapp2'),['myapp2']);
+    })
+</script>
+</body>
+</html>

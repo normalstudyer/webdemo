@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <style type="text/css">
+       .bounce-enter-active{
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0%{
+                transform: scale(0);
+            }
+            50%{
+                transform: scale(2);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+    </style>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+</head>
+<body>
+<div id="example-2" style="border: 1px solid #116bff;width:200px;word-break: keep-all">
+    <button @click="show = !show">Toggle show</button>
+    <transition name="bounce">
+        <!--<p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus</p>-->
+        <p v-if="show">出现和消失</p>
+    </transition>
+</div>
+<div id="di" class=""  style="width:200px;height:20px;border:1px solid;margin-top: 30px;">变色</div>
+<button id="bt" class="js--triggerAnimation">跳动</button><button id="qc">清除</button>
+<script>
+    new Vue({
+        el:'#example-2',
+        data:{
+            show:true
+        }
+    })
+    //setTimeout
+    var colors = new Array("red","green","blue");
+
+    function changeColor() {
+//var colorIndex = Math.round(Math.random()*3);
+        var color_div = colors[Math.round(Math.random() * 3)];
+        var color_font = colors[Math.round(Math.random() * 3)];
+        document.getElementById("di").style.borderColor = color_div;
+        //console.log(color_div);
+    }
+        //document.getElementById("font_c").style.color=color_font;
+//document.wirte(colorIndex);
+        setInterval("changeColor()",2000);
+    $('#bt').click(function () {
+
+        $('#di').attr("class","");
+        console.log("class"+$('#di').attr("class"));
+        //$('#di').addClass("animated bounce");
+
+        $('#di').attr("class","animated bounceIn");
+
+
+
+    })
+    $('#qc').click(function () {
+
+        $('#di').removeClass();
+
+
+    })
+   function testAnim(x) {
+        $('#di').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+            $(this).removeClass();
+        });
+    };
+
+    $(document).ready(function(){
+        $('.js--triggerAnimation').click(function(e){
+            e.preventDefault();
+            //var anim = $('.js--animations').val();
+            var anim = "bounce";
+            testAnim(anim);
+        });
+    });
+
+
+</script>
+</body>
+</html>

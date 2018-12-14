@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+</head>
+<body>
+<div id="example">{{message}}</div>
+<script>
+    var vm = new Vue({
+        el:'#example',
+        data:{
+            message:'123'
+        }
+    })
+     vm.message = 'new message';//更改数据
+     vm.$el.textContent === 'new message';//false
+     Vue.nextTick(function () {
+         vm.$el.textContent === 'new message';//true
+     })
+</script>
+</body>
+</html>

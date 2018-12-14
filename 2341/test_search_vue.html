@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js的搜索页面实例</title>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+</head>
+<body>
+<form id="main" v-cloak>
+    <div class="bar">
+        <!-- searchString模型与文本域创建绑定 -->
+        <input type="text" v-model="searchString" placeholder="输入搜索内容">
+    </div>
+    <ul>
+        <!-- 循环输出数据 -->
+        <li v-for="article in filteredArticles">
+            <a v-bind:href="article.url"><img v-bind:src="article.image"></a>
+            <p>{{article.title}}</p>
+        </li>
+    </ul>
+</form>
+<script>
+    var demo = new Vue({
+        el:'#main',
+        data:{
+            searchString:"",
+            //数据模型，实际环境你可以根据Ajax来获取
+            articles:[
+                {
+                    "title": "What You Need To Know About CSS Variables",
+                    "url": "https://www.runoob.com/css/css-tutorial.html",
+                    "image": "https://static.runoob.com/images/icon/css.png"
+                },
+                {
+                    "title": "Freebie: 4 Great Looking Pricing Tables",
+                    "url": "https://www.runoob.com/html/html-tutorial.html",
+                    "image": "https://static.runoob.com/images/icon/html.png"
+                },
+                {
+                    "title": "20 Interesting JavaScript and CSS Libraries for February 2016",
+                    "url": "https://www.runoob.com/css3/css3-tutorial.html",
+                    "image": "https://static.runoob.com/images/icon/css3.png"
+                },
+                {
+                    "title": "Quick Tip: The Easiest Way To Make Responsive Headers",
+                    "url": "https://www.runoob.com/css3/css3-tutorial.html",
+                    "image": "https://static.runoob.com/images/icon/css3.png"
+                },
+                {
+                    "title": "Learn SQL In 20 Minutes",
+                    "url": "https://www.runoob.com/sql/sql-tutorial.html",
+                    "image": "https://static.runoob.com/images/icon/sql.png"
+                },
+                {
+                    "title": "Creating Your First Desktop App With HTML, JS and Electron",
+                    "url": "https://www.runoob.com/js/js-tutorial.html",
+                    "image": "https://static.runoob.com/images/icon/html.png"
+                }
+            ]
+        },
+        computed:{
+            //计算数字，匹配搜索
+            filteredArticles:function () {
+                var articles_array = this.articles,//先是将数组赋值给个对象
+                    searchString = this.searchString;
+                if(!searchString){//判断输入框里面是否有内容，没有则返回所有的数组
+                    return articles_array;
+                }
+                searchString = searchString.trim().toLowerCase();//将输入框里面的字母转化为小写
+                articles_array = articles_array.filter(function (item) {
+                    if(item.title.toLowerCase().indexOf(searchString) !== -1){//判断articles里面是否有输入框里面的字母
+                        return item;
+                    }
+                })
+                //返回过来后的数组
+                return articles_array;
+            }
+        }
+    })
+</script>
+</body>
+</html>

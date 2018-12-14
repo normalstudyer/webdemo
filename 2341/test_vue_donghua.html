@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的过渡&动画</title>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+</head>
+<body>
+<div id="databinding">
+    <button v-on:click = "show = !show">点我</button>
+    <transition name="fade">
+        <p v-show="show" v-bind:style = "styleobj">动画实例</p>
+    </transition>
+</div>
+<br>
+<b>css过渡</b>
+<div id="databinding1">
+    <button v-on:click = "show = !show">点我</button>
+    <transition name="bounce">
+        <p v-if="show">hello</p>
+    </transition>
+</div>
+<br>
+<b>自定义过渡动画</b>
+<div id="databinding2">
+    <button v-on:click="show = !show">点我</button>
+    <transition
+        name="custom-classes-transition"
+        enter-active-class="animate tada"
+        leave-active-class="animate bounceOutRight">
+        <p v-if="show">菜鸟教程</p>
+    </transition>
+</div>
+<script>
+    var vm = new Vue({
+        el:'#databinding',
+        data:{
+            show:true,
+            styleobj:{
+                fontsize:'30px',
+                color:'red'
+            }
+        },
+        methods:{}
+    })
+    new Vue({
+        el:'#databinding1',
+        data:{
+            show:true
+        }
+    })
+    new Vue({
+        el:'#databinding2',
+        data:{
+            show:true
+        }
+    })
+</script>
+</body>
+</html>

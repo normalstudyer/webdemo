@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<!-- 使用对象作为数据源, x 为键(key), y 为值(value): -->
+<div ng-app="myapp" ng-controller="myCtrl">
+    <p>选择的网站是:</p>
+    <select ng-model="selectedSite" ng-options="x for ( x , y ) in sites">
+
+    </select>
+    <h2>你选择的值是:{{selectedSite}}</h2>
+    <p>该实例演示了使用对象作为创建下拉列表</p>
+</div>
+<div id="myapp1" ng-app="myapp1" ng-controller="myCtrl1">
+    <p>选择一辆车:</p>
+    <!-- 下面的ng-init是第二种设置选择框初始值的方式 -->
+    <select ng-init="selectedCar=cars['car01']" ng-model="selectedCar" ng-options="y.brand for (x,y) in cars"></select>
+    <h2>你选择的是:{{selectedCar.brand}}</h2>
+    <h2>模型:{{selectedCar.model}}</h2>
+    <h2>颜色:{{selectedCar.color}}</h2>
+    <p>注意选中的值是一个对象</p>
+</div>
+<script>
+    var app = angular.module("myapp",[]);
+    var app1 = angular.module("myapp1",[]);
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.getElementById("myapp1"),["myapp1"]);
+    })
+    app.controller("myCtrl",function($scope){
+        $scope.sites = {
+            site01 : "Google",
+            site02 : "Runoob",
+            site03 : "Taobao"
+        }
+        $scope.selectedSite = $scope.sites.site01;//设置选择框的初始值
+    });
+    app1.controller("myCtrl1",function($scope){
+        $scope.cars = {
+            car01 : {brand : "奇瑞" ,model : "1", color : "红色"},
+            car02 : {brand : "大众" ,model : "2", color : "黑色"},
+            car03 : {brand : "福特" ,model : "3", color : "白色"}
+        }
+    });
+</script>
+</body>
+</html>

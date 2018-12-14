@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js响应接口</title>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p style="font-size:25px;">计数器：{{counter}}</p>
+    <button @click="counter++" style="font-size: 25px;">点我</button>
+</div>
+<br>
+<b>Vue.set的使用</b>
+<div id="app1">
+    <p style="font-size:25px;">计数器：{{products.id}}</p>
+    <button @click="products.id++" style="font-size: 25px">点我</button>
+</div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            counter:1
+        }
+    });
+    vm.$watch('counter',function (nval,oval) {
+        alert('计数器值得变化：'+oval+'变为'+nval+'!');
+    });
+    setTimeout(
+        function () {
+            vm.counter = 20;
+        },2000
+    )
+    //Vue.set的使用
+    var myproduct = {"id":1,"name":"book","price":"20.00"};
+    var vm = new Vue({
+        el:'#app1',
+        data:{
+            counter:1,
+            product:myproduct
+        }
+    });
+    vm.product.qty = "1";
+    console.log(vm);
+    vm.$watch('counter',function(nval,oval){
+        alert('计数器值得变化：'+oval+"变为"+nval+'!')
+    });
+</script>
+</body>
+</html>

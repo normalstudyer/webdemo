@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试折叠部分</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    点击我进行展开，再次点击我进行折叠。第1部分
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+               One   :   Nihil anim sad dsadsad fdfd
+                efefe
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    点击我进行展开，再次点击我进行折叠。第2部分
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                Two  :   sadsadsa 4324 432 dsf
+                3exksk djsadj kkdas
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    点击我进行展开，再次点击我进行折叠。第2部分
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                sadsadsa 4324 432 dsf
+                3exksk 323 fdsf
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-group" id="accordion1">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion1" href="#collapseexample">
+                    点击我进行展开，再次点击我进行折叠。--show事件
+                </a>
+            </h4>
+        </div>
+        <div id="collapseexample" class="panel-collapse collapse">
+            <div class="panel-body">
+                example     :     32131 dasdsad frfr
+                dsdedef fefer 3232
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $('#collapseexample').on('show.bs.collapse',function(){
+            alert('嘿，当你展开时会提示本警告');
+        })
+    })
+</script>
+</body>
+</html>

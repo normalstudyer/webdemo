@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myapp" ng-contoller="myCtrl">
+    <table>
+        <tr ng-repeat="x in names">
+            <td>{{x.Name}}</td>
+            <td>{{x.Country}}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var app = angular.module("myapp",[]);
+    app.controller("myCtrl",function($scope,$http){
+        $http.get("/Customers_JSON.php")
+        .then(function(result){
+            $scope.names = result.data.records;
+        })
+    })
+</script>
+</body>
+</html>
